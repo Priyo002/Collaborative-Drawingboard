@@ -12,8 +12,6 @@ function setup() {
     strokeWeight(drawingStroke);
     stroke(strokeColor);
 
-    //socket = io.connect('http://localhost:3000');
-    //socket = io.connect('https://collaborative-drawingboard.vercel.app/');
     socket.on('mouse',(data) => {
         if(data.era){
             erase(255,255);
@@ -66,6 +64,7 @@ const eraserStrengthSlider = document.getElementById('eraser-strength');
 colorButtons.forEach(button => {
     button.addEventListener('click', () => {
         // Handle color button click, you can use the button's background color
+        eraseme = false;
         strokeColor = String(button.style.backgroundColor);
         console.log('Selected color:', button.style.backgroundColor);
     });

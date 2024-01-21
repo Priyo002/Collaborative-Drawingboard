@@ -15,7 +15,6 @@ http.listen(process.env.PORT || 3000,()=>{
     console.log("Server is runnig http://localhost:3000");
 })
 
-app.use(cors());
 app.use(express.static('public'));
 
 io.on('connection',(socket)=>{
