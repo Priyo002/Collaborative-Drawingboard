@@ -11,9 +11,6 @@ const io = require('socket.io')(http,{
 });
 
 
-http.listen(process.env.PORT || 3001,()=>{
-    console.log("Server is runnig http://localhost:3000");
-})
 
 app.use(express.static('public'));
 
@@ -32,6 +29,15 @@ io.on('connection',(socket)=>{
 
 app.get('/socket.io',(req,res)=>{
     res.sendFile(__dirname+'/public/index.html');
+})
+
+app.get('/test',(req,res)=>{
+    res.send("shgwui");
+})
+
+
+http.listen(process.env.PORT || 3001,()=>{
+    console.log("Server is runnig http://localhost:3000");
 })
 
 
