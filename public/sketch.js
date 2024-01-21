@@ -13,7 +13,7 @@ function setup() {
     stroke(strokeColor);
 
     //socket = io.connect('http://localhost:3000');
-    socket = io.connect('https://collaborative-drawingboard.vercel.app/');
+    socket = io.connect('https://collaborative-drawingboard.vercel.app');
     socket.on('mouse',(data) => {
         if(data.era){
             erase(255,255);
