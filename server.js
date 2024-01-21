@@ -1,13 +1,17 @@
 const express = require('express');
-const socketIO = require('socket.io');
+const app = express();
+const http = require('http').createServer(app);
+
+const io = require('socket.io')(http,{
+    cors:{
+        origin: "*",
+    }
+});
 require('dotenv').config();
 
-const app = express();
-const server = app.listen(process.env.PORT || 3000,()=>{
+http.listen(process.env.PORT || 3000,()=>{
     console.log("Server is runnig http://localhost:3000");
 })
-
-const io = socketIO(server);
 
 app.use(express.static('public'));
 
