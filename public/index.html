@@ -12,7 +12,31 @@
 <link rel="stylesheet" href="style.css">
 <body>
     
-    <button id="eraser">Click Me</button>
+    <div id="color-box">
+        <div class="color-row">
+          <div class="color-button" style="background-color: red;"></div>
+          <div class="color-button" style="background-color: green;"></div>
+          <div class="color-button" style="background-color: blue;"></div>
+          <div class="color-button" style="background-color: yellow;"></div>
+          
+          <div class="slider-container">
+            <label class="slider-label" for="pen-strength">Pen</label>
+            <input class="slider" type="range" id="pen-strength" min="2" max="25" value="4">
+          </div>
+        </div>
+      
+        <div class="color-row">
+          <div class="color-button" style="background-color: purple;"></div>
+          <div class="color-button" style="background-color: orange;"></div>
+          <div class="color-button" style="background-color: pink;"></div>
+          <!-- Add more color buttons as needed -->
+          <div class="slider-container">
+            <label class="slider-label" for="eraser-strength">Eraser</label>
+            <input class="slider" type="range" id="eraser-strength" min="5" max="70" value="15">
+          </div>
+        </div>
+      </div>
+    
 
 <script src="sketch.js"></script>
 </body>
