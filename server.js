@@ -1,18 +1,21 @@
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
+require('dotenv').config();
 
 const io = require('socket.io')(http,{
     cors:{
         origin: "*",
+        methods: ["GET","POST"]
     }
 });
-require('dotenv').config();
+
 
 http.listen(process.env.PORT || 3000,()=>{
     console.log("Server is runnig http://localhost:3000");
 })
 
+app.use(cors());
 app.use(express.static('public'));
 
 io.on('connection',(socket)=>{
