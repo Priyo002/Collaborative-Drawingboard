@@ -7,7 +7,9 @@ let backgroundColor = "white";
 
 
 function setup() {
-    createCanvas(displayWidth, displayHeight);
+    const Width = window.screen.width;
+    const Height = window.screen.height;
+    createCanvas(Width, Height);
     background(backgroundColor);
     strokeWeight(drawingStroke);
     stroke(strokeColor);
@@ -15,7 +17,7 @@ function setup() {
     socket.on('mouse',(data) => {
         if(data.era){
             erase(255,255);
-            strokeWeight(eraserStroke);
+            strokeWeight(data.eraserStroke);
             line(data.x, data.y, data.px, data.py);
             noErase();
         }
@@ -48,12 +50,19 @@ function touchMoved() {
         py : pmouseY,
         era: eraseme,
         drawingStroke: drawingStroke,
-        strokeColor: strokeColor
+        strokeColor: strokeColor,
+        eraserStroke: eraserStroke
     }
     
     socket.emit('mouse',data);
     return false;
     
+}
+function mouseWheel(){
+    console.log("Works");
+    const page  = createCanvas(displayWidth,displayHeight);
+    console.log(page);
+
 }
 
 const colorButtons = document.querySelectorAll('.color-button');
@@ -83,3 +92,27 @@ eraserStrengthSlider.addEventListener('input', () => {
     eraserStroke = eraserStrengthSlider.value;
     console.log('Eraser Strength:', eraserStrengthSlider.value);
 });
+
+
+
+let pageCount = 1;
+
+function createNewPage() {
+  const newPage = document.createElement('div');
+  newPage.className = 'page';
+  newPage.id = `page${pageCount + 1}`;
+  newPage.textContent = `Page ${pageCount + 1}`;
+  pageCount++;
+
+  // Append the new page to the document
+  document.body.appendChild(newPage);
+}
+
+// Add a listener for the scroll event
+document.addEventListener('scroll', function (event) {
+  // Check if the user is scrolling up
+  if (event.deltaY < 0) {
+    createNewPage();
+  }
+});
+
